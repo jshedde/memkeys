@@ -11,7 +11,13 @@ RUN apt-get update -y && \
                        libpcre3-dev \
                        lib32ncurses5-dev \
                        autoconf \
-                       libtool
+                       libtool \
+                       ruby \
+                       ruby-dev \
+                       rubygems \
+                       build-essential && \
+    gem install --no-ri --no-rdoc fpm
+
 
 ADD . /memkeys
 
@@ -20,3 +26,5 @@ RUN cd /memkeys && \
     ./configure --disable-shared \
                 --enable-static && \
     make
+RUN cd /memkeys/src/ && \
+    fpm -s dir -t deb --deb-no-default-config-files -n memkeys -m "Jean-Sebastien Hedde <jshedde@lafourchette.com>" -f -v 0.1 --prefix /usr/bin memkeys
