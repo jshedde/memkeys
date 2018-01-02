@@ -74,6 +74,10 @@ The following library versions were used:
 This should build fine against newer versions of the above tools. Different
 libraries are untested.
 
+You can also build memkeys with docker:
+
+    make -f Makefile.docker
+
 # License
 
 Copyright 2013 Tumblr.

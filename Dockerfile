@@ -1,9 +1,22 @@
 FROM debian:wheezy
-MAINTAINER Jean-Sébastien Hedde <jeanseb@au-fil-du.net>
 
-RUN apt-get update; apt-get install -y automake autoconf libpcap-dev libpcre3-dev libncurses5-dev libtool g++ make; apt-get purge
-# touch NEWS README AUTHORS ChangeLog
-# WORKSPACE /src
-# RUN autoconf
-# RUN automake
-# RUN ./configure
+LABEL maintainer="Jean-Sébastien Hedde <jeanseb@au-fil-du.net>, Guillaume LECERF <glecerf@gmail.com>"
+
+ARG DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update -y && \
+    apt-get install -y git \
+                       build-essential \
+                       libpcap-dev \
+                       libpcre3-dev \
+                       lib32ncurses5-dev \
+                       autoconf \
+                       libtool
+
+ADD . /memkeys
+
+RUN cd /memkeys && \
+    ./build-eng/autogen.sh && \
+    ./configure --disable-shared \
+                --enable-static && \
+    make
