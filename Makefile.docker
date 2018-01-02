@@ -8,4 +8,7 @@ nocache:
 	docker build --force-rm --no-cache -t $(NAME):$(TAG) .
 
 extractbinary:
-	docker run -it --rm -v $(shell pwd)/src:/local memkeys-build:latest cp /memkeys/src/memkeys /local/memkeys
+	docker run -it --rm -v $(shell pwd)/src:/local memkeys-build:latest cp /memkeys/src/memkeys /local/
+
+extractpackage:
+	docker run -it --rm -v $(shell pwd)/src:/local memkeys-build:latest cp /memkeys/src/memkeys_0.1_amd64.deb /local/
