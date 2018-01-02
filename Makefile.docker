@@ -6,3 +6,6 @@ all:
 
 nocache:
 	docker build --force-rm --no-cache -t $(NAME):$(TAG) .
+
+extractbinary:
+	docker run -it --rm -v $(shell pwd)/src:/local memkeys-build:latest cp /memkeys/src/memkeys /local/memkeys
