@@ -27,4 +27,14 @@ RUN cd /memkeys && \
                 --enable-static && \
     make
 RUN cd /memkeys/src/ && \
-    fpm -s dir -t deb --deb-no-default-config-files -n memkeys -m "Jean-Sebastien Hedde <jshedde@lafourchette.com>" -f -v 0.1 --prefix /usr/bin memkeys
+    fpm -s dir \
+        -t deb \
+        --deb-no-default-config-files \
+        -n memkeys \
+        -d "libpcre3 >= 8.30" \
+        -d "libpcap0.8 >= 1.3.0" \
+        -m "Jean-Sebastien Hedde <jshedde@lafourchette.com>" \
+        -f \
+        -v 0.1 \
+        --prefix /usr/bin \
+        memkeys
