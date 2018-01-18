@@ -31,6 +31,8 @@ RUN cd /memkeys/src/ && \
         -t deb \
         --deb-no-default-config-files \
         -n memkeys \
+        -d "libpcre3 >= 8.30" \
+        -d "libpcap0.8 >= 1.3.0" \
         -m "Jean-Sebastien Hedde <jshedde@lafourchette.com>" \
         -f \
         -v 0.1 \
